@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LobbySceneManager : MonoBehaviour
 {
-    public LobbySceneManager Instance;
+    public static LobbySceneManager Instance;
 
     [Header("# Panels")]
     [SerializeField, Tooltip("메인 패널")] GameObject _mainPanel;
@@ -16,7 +16,7 @@ public class LobbySceneManager : MonoBehaviour
     [SerializeField, Tooltip("로고")] Image _logoImage;
     [SerializeField, Tooltip("시작 버튼")] Button _startButton;
     [SerializeField, Tooltip("옷장 버튼")] Button _costumeButton;
-    [SerializeField, Tooltip("출석 버튼")] Button _dailyButton;
+    //[SerializeField, Tooltip("출석 버튼")] Button _dailyButton;
 
     [Header("# Costume Panel")]
     [SerializeField, Tooltip("닫기 버튼")] Button _costumeCloseButton;
@@ -44,7 +44,7 @@ public class LobbySceneManager : MonoBehaviour
         // 메인 패널 버튼 리스너 등록
         _startButton.onClick.AddListener(StartGame);
         _costumeButton.onClick.AddListener(OpenCostumePanel);
-        _dailyButton.onClick.AddListener(OpenDailyPanel);
+        //_dailyButton.onClick.AddListener(OpenDailyPanel);
 
         // 옷장 패널 버튼 리스너 등록
         _costumeCloseButton.onClick.AddListener(CloseCostumePanel);
@@ -101,14 +101,17 @@ public class LobbySceneManager : MonoBehaviour
             case 0:
                 // 머리 아이템 슬롯 활성화
                 _categoryButtons[0].GetComponent<Image>().color = _selectedColor;
+                CostumeManager.Instance.LoadCostumeItems(CostumeType.Head);
                 break;
             case 1:
                 // 상의 아이템 슬롯 활성화
                 _categoryButtons[1].GetComponent<Image>().color = _selectedColor;
+                CostumeManager.Instance.LoadCostumeItems(CostumeType.Body);
                 break;
             case 2:
                 // 하의 아이템 슬롯 활성화
                 _categoryButtons[2].GetComponent<Image>().color = _selectedColor;
+                CostumeManager.Instance.LoadCostumeItems(CostumeType.Legs);
                 break;
         }
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f7f8c061fb1e7498d4072f349662cf, type: 3}
+  m_Name: Body5
+  m_EditorClassIdentifier: 
+  costumeID: 2005
+  costumeName: Body5
+  costumeType: 1
+  costumeSprite: {fileID: 377496992803392089, guid: c75e467d676387445ab698eb0c5f9781, type: 3}
+  isUnlocked: 0

@@ -6,8 +6,13 @@ public class CostumeSO : ScriptableObject
     public int costumeID;
     public string costumeName;
     public CostumeType costumeType;
-    public Sprite headSprite;
+    public Sprite costumeSprite;
     public bool isUnlocked;
+
+    public void UnlockCostume()
+    {
+        isUnlocked = true;
+    }
 }
 
 public enum CostumeType

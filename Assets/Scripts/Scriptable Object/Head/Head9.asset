@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f7f8c061fb1e7498d4072f349662cf, type: 3}
-  m_Name: Head1
+  m_Name: Head9
   m_EditorClassIdentifier: 
-  costumeID: 0
-  costumeName: 
+  costumeID: 1008
+  costumeName: Head9
   costumeType: 0
-  headSprite: {fileID: 0}
+  costumeSprite: {fileID: -5552553180772737248, guid: 41d6b38b157590d49a1d2508ad727bca, type: 3}
   isUnlocked: 0
