@@ -2,8 +2,11 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Basic Poop
+  - Golden Poop
+  - Giant Poop
   layers:
   - Default
   - TransparentFX
@@ -41,3 +44,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1376288041
+    locked: 0
+  m_RenderingLayers:
+  - Default
