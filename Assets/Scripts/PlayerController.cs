@@ -1,15 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // PC에서 키보드 테스트를 위한 이동 속도
-    public float moveSpeed = 5f;
+    [Tooltip("좌우 이동속도(PC 테스트용)")]
+    public float moveSpeed = 8f;
 
-    // 플레이어의 가로 폭 절반 (화면 경계 계산에 사용)
-    // 인스펙터에서 직접 조절하거나, Start()에서 자동으로 계산할 수 있습니다.
+    [Tooltip("플레이어의 가로 폭 절반 (화면 경계 계산에 사용)")]
     public float playerHalfWidth = 0.5f;
 
-    // 화면 경계 값 (게임 월드 좌표)
+    [Tooltip("화면 경계 값 (게임 월드 좌표)")]
     private float minX, maxX;
 
     void Start()
@@ -55,5 +55,33 @@ public class PlayerController : MonoBehaviour
              currentPosition.x = Mathf.Clamp(currentPosition.x, minX, maxX);
              transform.position = currentPosition;
          #endif
+    }
+
+    /// <summary>
+    /// 플레이어가 일반 똥, 황금 똥, 대왕 똥에 충돌했을 때 호출.
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 황금 똥과 충돌 시 재화 획득
+        if (other.CompareTag("Golden Poop"))
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.AddGoldenPoop(1);
+            }
+
+            Destroy(other.gameObject);
+        }
+        
+        // 기본 똥 또는 대왕 똥과 충돌 시 퀴즈 패널 활성화
+        else if (other.CompareTag("Basic Poop") || other.CompareTag("Giant Poop"))
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.ShowQuiz();
+            }
+
+            Destroy(other.gameObject);
+        }
     }
 }

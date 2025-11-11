@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5446590935138449222}
   - component: {fileID: -6975651389078812354}
   - component: {fileID: -3627253920272673323}
+  - component: {fileID: -3337255937252256816}
   m_Layer: 0
   m_Name: Giant Poop
   m_TagString: Giant Poop
@@ -146,7 +147,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -162,3 +163,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.89, y: 3.02}
   m_EdgeRadius: 0
+--- !u!114 &-3337255937252256816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404643249846898972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f41fc5058e39439e30f7e826e07aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
