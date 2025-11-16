@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 저장된 황금 똥 개수를 불러오거나, 저장된 값이 없다면 0
+        // 기기에 저장된 황금 똥 개수를 불러오거나, 저장된 값이 없다면 0
         goldenPoops = PlayerPrefs.GetInt("GoldenPoops", 0);
 
         // 게임이 시작될 때 UI 점수 텍스트 초기화
@@ -124,13 +124,13 @@ public class GameManager : MonoBehaviour
             if (currentScore > highScore)
             {
                 PlayerPrefs.SetInt("HighScore", currentScore);
-                finalScoreText.text = "최고 기록 갱신!\nIQ: " + currentScore;
+                finalScoreText.text = "최고 IQ 갱신!\nIQ: " + currentScore;
             }
 
             // 최종 점수 텍스트에 현재 점수와 최고 점수를 함께 표시 
             else
             {
-                finalScoreText.text = "최종 IQ: " + currentScore + "\n(최고: " + highScore + ")";
+                finalScoreText.text = "최종 IQ: " + currentScore + "\n최고 IQ: " + highScore;
             }
         }
         

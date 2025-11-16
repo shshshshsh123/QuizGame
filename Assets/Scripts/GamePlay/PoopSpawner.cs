@@ -68,7 +68,7 @@ public class PoopSpawner : MonoBehaviour
         // 난이도 (경과 시간 0초 = 0%, 경과 시간 60초 = 50%, 경과 시간 120초 = 100%)
         float difficulty = elapsedTime / timeToReachMaxDifficulty;
 
-        // 최대 난이도 계속 유지
+        // 최대 난이도를 달성하면 난이도 계속 유지
         difficulty = Mathf.Clamp01(difficulty);
 
         // 계산된 비율로 생성 간격 설정 (똥 생성 속도가 점점 빨라지도록)

@@ -42,6 +42,14 @@ public class LobbySceneManager : MonoBehaviour
 
     private void Start()
     {
+        // 기기에 저장된 최고 점수를 불러옴 (없으면 0)
+        int highscore = PlayerPrefs.GetInt("HighScore", 0);
+        _highScoreText.text = "최고 IQ: " + highscore;
+
+        // 기기에 저장된 황금 똥 개수를 불러옴 (없으면 0)
+        int goldenpoop = PlayerPrefs.GetInt("GoldenPoops", 0);
+        _goldAmountText.text = "황금 똥: " + goldenpoop + "개";
+
         // 메인 패널 버튼 리스너 등록
         _startButton.onClick.AddListener(StartGame);
         _costumeButton.onClick.AddListener(OpenCostumePanel);
