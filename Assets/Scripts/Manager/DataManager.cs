@@ -111,6 +111,9 @@ public class DataManager : MonoBehaviour
             _equippedItemDict[CostumeType.Body] = data.equippedBodyId;
             _equippedItemDict[CostumeType.Legs] = data.equippedLegsId;
 
+            _goldAmount = data.goldAmount;
+            _maxIQ = data.maxIQ;
+
             Debug.Log($"로드 완료: {_acquiredItemSet.Count}개의 아이템 로드됨");
         }
         catch (Exception e)

@@ -160,7 +160,6 @@ public class GameManager : MonoBehaviour
 
         if (finalScoreText != null)
         {
-            // 기기의 데이터에 저장된(PlayerPrefs) 최고 점수를 불러옴 (없으면 0)
             int highScore = DataManager.Instance.MaxIQ;
 
             // 현재 점수가 최고 점수보다 높다면 갱신
@@ -190,6 +189,8 @@ public class GameManager : MonoBehaviour
         {
             gameOverUI.SetActive(true);
         }
+
+        DataManager.Instance.Save();
     }
 
     /// <summary>
