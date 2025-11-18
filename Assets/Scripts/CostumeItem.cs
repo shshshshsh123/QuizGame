@@ -37,7 +37,7 @@ public class CostumeItem : MonoBehaviour
         }
         else
         {
-            _priceText.text = "1000 G"; // 예시 가격
+            _priceText.text = costumeData.price.ToString("N0") + "G";
             _priceText.color = Color.yellow;
             _lockIconObject.SetActive(true);
             _costumeIconImage.gameObject.SetActive(false);

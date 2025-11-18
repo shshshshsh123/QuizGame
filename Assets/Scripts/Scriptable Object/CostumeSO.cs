@@ -8,6 +8,7 @@ public class CostumeSO : ScriptableObject
     public CostumeType costumeType;
     public Sprite costumeSprite;
     public bool isUnlocked;
+    public int price;
 
     public void UnlockCostume()
     {

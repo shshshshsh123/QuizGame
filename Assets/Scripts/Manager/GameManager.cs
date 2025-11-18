@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +25,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI goldenPoopText;
     public TextMeshProUGUI finalScoreText;
 
+    [Header("# Player Costume")]
+    public List<SpriteRenderer> playerCostumes;
+
+    [Header("# Costume Data Database")]
+    [SerializeField] CostumeSO[] _headCostumeDataList;
+    [SerializeField] CostumeSO[] _bodyCostumeDataList;
+    [SerializeField] CostumeSO[] _legsCostumeDataList;
+
     private PoopSpawner _poopSpawner;
 
     void Awake()
@@ -41,7 +51,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 기기에 저장된 황금 똥 개수를 불러오거나, 저장된 값이 없다면 0
-        goldenPoops = PlayerPrefs.GetInt("GoldenPoops", 0);
+        goldenPoops = DataManager.Instance.GoldAmount;
 
         // 게임이 시작될 때 UI 점수 텍스트 초기화
         UpdateScore();
@@ -61,6 +71,39 @@ public class GameManager : MonoBehaviour
         {
             gameOverUI.SetActive(false);
         }
+
+        // 플레이어 코스튬 입히기
+        ApplySavedCostumes();
+    }
+
+    private void ApplySavedCostumes()
+    {
+        if (DataManager.Instance == null) return;
+
+        // 1. DataManager에서 저장된 ID 가져오기
+        int headId = DataManager.Instance.GetEquippedItemId(CostumeType.Head);
+        int bodyId = DataManager.Instance.GetEquippedItemId(CostumeType.Body);
+        int legsId = DataManager.Instance.GetEquippedItemId(CostumeType.Legs);
+
+        // 2. ID에 해당하는 SO 파일 찾기
+        CostumeSO headSO = GetCostumeByID(headId, _headCostumeDataList);
+        CostumeSO bodySO = GetCostumeByID(bodyId, _bodyCostumeDataList);
+        CostumeSO legsSO = GetCostumeByID(legsId, _legsCostumeDataList);
+
+        // 3. 플레이어 렌더러에 이미지 갈아끼우기
+        // playerCostumes[0]: 머리, [1]: 상의, [2]: 하의
+        if (playerCostumes.Count >= 3)
+        {
+            if (headSO != null) playerCostumes[0].sprite = headSO.costumeSprite;
+            if (bodySO != null) playerCostumes[1].sprite = bodySO.costumeSprite;
+            if (legsSO != null) playerCostumes[2].sprite = legsSO.costumeSprite;
+        }
+    }
+
+    private CostumeSO GetCostumeByID(int id, CostumeSO[] list)
+    {
+        if (list == null) return null;
+        return list.FirstOrDefault(x => x.costumeID == id);
     }
 
     /// <summary>
@@ -118,13 +161,13 @@ public class GameManager : MonoBehaviour
         if (finalScoreText != null)
         {
             // 기기의 데이터에 저장된(PlayerPrefs) 최고 점수를 불러옴 (없으면 0)
-            int highScore = PlayerPrefs.GetInt("HighScore", 0);
+            int highScore = DataManager.Instance.MaxIQ;
 
             // 현재 점수가 최고 점수보다 높다면 갱신
             if (currentScore > highScore)
             {
-                PlayerPrefs.SetInt("HighScore", currentScore);
                 finalScoreText.text = "최고 IQ 갱신!\nIQ: " + currentScore;
+                DataManager.Instance.SetMaxIQ(currentScore);
             }
 
             // 최종 점수 텍스트에 현재 점수와 최고 점수를 함께 표시 
@@ -190,7 +233,7 @@ public class GameManager : MonoBehaviour
         goldenPoops += amount;
         UpdateGoldenPoop();
         // 황금 똥 개수 저장
-        PlayerPrefs.SetInt("GoldenPoops", goldenPoops);
+        DataManager.Instance.SetGoldAmount(goldenPoops);
     }
 
     /// <summary>

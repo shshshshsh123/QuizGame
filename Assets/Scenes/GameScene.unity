@@ -3403,6 +3403,39 @@ MonoBehaviour:
   scoreText: {fileID: 1887959549}
   goldenPoopText: {fileID: 2119438627}
   finalScoreText: {fileID: 1952722903}
+  playerCostumes:
+  - {fileID: 812312635}
+  - {fileID: 716019026}
+  - {fileID: 372776296}
+  _headCostumeDataList:
+  - {fileID: 11400000, guid: 075640e5b14bbb74aaf0b7b20ffb1059, type: 2}
+  - {fileID: 11400000, guid: 473463af774b8a34595b7788044e8f0c, type: 2}
+  - {fileID: 11400000, guid: c1465858653b7d34e8ecd5a5fb753edf, type: 2}
+  - {fileID: 11400000, guid: 9d9bf07545b9f4d4eb554c673019607a, type: 2}
+  - {fileID: 11400000, guid: 72afc30ccf4bb2446b82cfc3e80bb90b, type: 2}
+  - {fileID: 11400000, guid: bfeaa9682906c4e45bc43492375585f9, type: 2}
+  - {fileID: 11400000, guid: 49eba84f3cbd57543a9f3c21687a124c, type: 2}
+  - {fileID: 11400000, guid: 751a95c2f792f7b4ba5f3d8cca5703b4, type: 2}
+  - {fileID: 11400000, guid: 61ddf2656d8ee7e4fa77da73f75caa33, type: 2}
+  _bodyCostumeDataList:
+  - {fileID: 11400000, guid: 8369481672da07d489c31254bdb2abe8, type: 2}
+  - {fileID: 11400000, guid: 4681921e96e75954fa6bd2f736126788, type: 2}
+  - {fileID: 11400000, guid: dc9c82bc20228034b945dbbeb835d8c1, type: 2}
+  - {fileID: 11400000, guid: 3ace896cf19ed8d4982e8a22683db11c, type: 2}
+  - {fileID: 11400000, guid: 4d32ccb5aa0fca942b9cbebfc0acc7da, type: 2}
+  - {fileID: 11400000, guid: 9216064a265674f41a5ba3ec0b6430c1, type: 2}
+  - {fileID: 11400000, guid: befcfa20066f0624eb365003e00a4a26, type: 2}
+  - {fileID: 11400000, guid: f289630c70f70374ab1635c3e93436d9, type: 2}
+  _legsCostumeDataList:
+  - {fileID: 11400000, guid: a3594efd50d87764382bfa849f7c5134, type: 2}
+  - {fileID: 11400000, guid: 29a9cf4fc674a074f8091b16e96f1898, type: 2}
+  - {fileID: 11400000, guid: 9b986b1a1a05dbf478c86655557d6a7a, type: 2}
+  - {fileID: 11400000, guid: d0cff71744c638243b3738de98013458, type: 2}
+  - {fileID: 11400000, guid: 5c561baa68feef84c803c2ee0f495f36, type: 2}
+  - {fileID: 11400000, guid: 4f3a0067513aae2438430aeddd5c6fe7, type: 2}
+  - {fileID: 11400000, guid: f5c652eca6094b2448df25082406a26c, type: 2}
+  - {fileID: 11400000, guid: 2dbede1f82d03cf47ab772ff10828316, type: 2}
+  - {fileID: 11400000, guid: bb49cfe52ec587141a517b7a07df850a, type: 2}
 --- !u!1 &2119438625
 GameObject:
   m_ObjectHideFlags: 0
