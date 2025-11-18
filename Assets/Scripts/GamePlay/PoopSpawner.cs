@@ -9,7 +9,7 @@ public class PoopSpawner : MonoBehaviour
     public GameObject[] smallpoopPrefabs;
 
     [Tooltip("일반 똥, 황금 똥 생성 간격")]
-    public float spawnInterval = 1.0f;
+    public float normalSpawnInterval = 3.0f;
 
     [Header("대왕 똥")]
 
@@ -47,7 +47,7 @@ public class PoopSpawner : MonoBehaviour
 
         // 시작 시간 및 초기 생성 간격 저장
         _startTime = Time.time;
-        _initialNormalInterval = spawnInterval;
+        _initialNormalInterval = normalSpawnInterval;
         _initialGiantInterval = giantSpawnInterval;
 
         StartCoroutine(SpawnNormalPoops());
@@ -72,7 +72,7 @@ public class PoopSpawner : MonoBehaviour
         difficulty = Mathf.Clamp01(difficulty);
 
         // 계산된 비율로 생성 간격 설정 (똥 생성 속도가 점점 빨라지도록)
-        spawnInterval = Mathf.Lerp(_initialNormalInterval, minNormalSpawnInterval, difficulty);
+        normalSpawnInterval = Mathf.Lerp(_initialNormalInterval, minNormalSpawnInterval, difficulty);
         giantSpawnInterval = Mathf.Lerp(_initialNormalInterval, minGiantSpawnInterval, difficulty);
     }
 
@@ -91,7 +91,7 @@ public class PoopSpawner : MonoBehaviour
     /// <returns></returns>
     IEnumerator SpawnNormalPoops()
     {
-        yield return new WaitForSeconds(spawnInterval);
+        yield return new WaitForSeconds(normalSpawnInterval);
 
         while (true)
         {
@@ -115,7 +115,7 @@ public class PoopSpawner : MonoBehaviour
             Instantiate(smallpoopPrefabs[randomIndex], spawnPosition, Quaternion.identity);
 
             // 생성 간격만큼 대기
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(normalSpawnInterval);
         }
     }
 
@@ -138,7 +138,7 @@ public class PoopSpawner : MonoBehaviour
 
             // 똥이 생성될 위치 (일반 똥, 황금 똥과 달리 X좌표를 항상 화면 중앙으로 고정)
             Vector3 spawnPosition = new Vector3(0, transform.position.y, 0);
-            
+
             // 생성
             Instantiate(giantPoopPrefab, spawnPosition, Quaternion.identity);
 
