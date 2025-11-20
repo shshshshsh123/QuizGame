@@ -1,4 +1,6 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class CostumeManager : MonoBehaviour
@@ -30,7 +32,27 @@ public class CostumeManager : MonoBehaviour
     private void Start()
     {
         _currentCostumeType = CostumeType.Head;
-        LoadCostumeItems(_currentCostumeType);
+        LoadCostumeItems(_currentCostumeType); 
+        RestoreEquippedItems();
+    }
+
+    private void RestoreEquippedItems()
+    {
+        if (DataManager.Instance == null) return;
+
+        int headId = DataManager.Instance.GetEquippedItemId(CostumeType.Head);
+        int bodyId = DataManager.Instance.GetEquippedItemId(CostumeType.Body);
+        int legsId = DataManager.Instance.GetEquippedItemId(CostumeType.Legs);
+
+        EquipCostume(GetCostumeByID(headId, _headCostumeDataList));
+        EquipCostume(GetCostumeByID(bodyId, _bodyCostumeDataList));
+        EquipCostume(GetCostumeByID(legsId, _legsCostumeDataList));
+    }
+
+    private CostumeSO GetCostumeByID(int id, CostumeSO[] list)
+    {
+        // 배열에서 ID가 일치하는 첫 번째 요소 반환 (없으면 null)
+        return list.FirstOrDefault(x => x.costumeID == id);
     }
 
     public void LoadCostumeItems(CostumeType costumeType)
@@ -59,11 +81,17 @@ public class CostumeManager : MonoBehaviour
 
         foreach (var costumeData in targetList)
         {
+            // UI를 생성하기 전, DataManager에 저장된 ID인지 확인하여 SO 상태 업데이트
+            if (DataManager.Instance != null)
+            {
+                costumeData.isUnlocked = DataManager.Instance.HasItem(costumeData.costumeID);
+            }
+
             GameObject itemObj = Instantiate(_costumeItemPrefab, _costumeItemParent);
 
             if (itemObj.TryGetComponent<CostumeItem>(out var costumeItem))
             {
-                // 아이템 정보 설정 (콜백 함수 포함)
+                // costumeItem 내부에서는 costumeData.isUnlocked를 보고 자물쇠 아이콘등 설정
                 costumeItem.SetCostumeInfo(costumeData, OnCostumeItemClicked);
             }
         }
@@ -77,15 +105,29 @@ public class CostumeManager : MonoBehaviour
         }
         else
         {
-            // 코스튬 구매 로직
-            // 여기서는 단순히 잠금 해제만 시도 (TODO: 골드(황금똥) 충분히 보유중인지 + 소모 로직추가)
+            // 미보유 -> 구매 시도
+            if (!DataManager.Instance.CanBuy(costumeData.price))
+            {
+                // 나중에 경고메시지 같은거 추가하면 좋을듯
+                return;
+            }
+
+            // 1. 데이터 매니저에 획득 정보 저장
+            DataManager.Instance.AcquireItem(costumeData.costumeID);
+            DataManager.Instance.Save(); // 중요한 정보니 즉시 저장 추천
+
+            // 2. SO 상태도 갱신 (UI 즉각 반영을 위해)
             costumeData.UnlockCostume();
-            LoadCostumeItems(_currentCostumeType); // UI 업데이트
+
+            // 3. UI 새로고침 (잠금 아이콘 해제된 상태로 다시 그리기)
+            LoadCostumeItems(_currentCostumeType);
         }
     }
 
     void EquipCostume(CostumeSO costumeData)
     {
+        if (costumeData == null) return;
+
         switch (costumeData.costumeType)
         {
             case CostumeType.Head:
@@ -98,9 +140,11 @@ public class CostumeManager : MonoBehaviour
                 _playerLegsImage.sprite= costumeData.costumeSprite;
                 break;
         }
+        DataManager.Instance.SetEquippedItem(costumeData.costumeType, costumeData.costumeID);
+        DataManager.Instance.Save();
     }
 
-    public void TestFunction()
+    public void ResetAllData()
     {
         foreach (var costumeData in _headCostumeDataList)
         {

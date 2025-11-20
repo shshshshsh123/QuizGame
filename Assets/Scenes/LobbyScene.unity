@@ -1707,6 +1707,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640401457}
   m_CullTransparentMesh: 1
+--- !u!1 &665207284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665207286}
+  - component: {fileID: 665207285}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &665207285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665207284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e11fa055cacbd546a1c5b1eacc1dbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: 
+--- !u!4 &665207286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665207284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &708340439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,6 +2557,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 751a95c2f792f7b4ba5f3d8cca5703b4, type: 2}
   - {fileID: 11400000, guid: 61ddf2656d8ee7e4fa77da73f75caa33, type: 2}
   _bodyCostumeDataList:
+  - {fileID: 11400000, guid: 8369481672da07d489c31254bdb2abe8, type: 2}
   - {fileID: 11400000, guid: 4681921e96e75954fa6bd2f736126788, type: 2}
   - {fileID: 11400000, guid: dc9c82bc20228034b945dbbeb835d8c1, type: 2}
   - {fileID: 11400000, guid: 3ace896cf19ed8d4982e8a22683db11c, type: 2}
@@ -2519,7 +2565,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9216064a265674f41a5ba3ec0b6430c1, type: 2}
   - {fileID: 11400000, guid: befcfa20066f0624eb365003e00a4a26, type: 2}
   - {fileID: 11400000, guid: f289630c70f70374ab1635c3e93436d9, type: 2}
-  - {fileID: 11400000, guid: 8369481672da07d489c31254bdb2abe8, type: 2}
   _legsCostumeDataList:
   - {fileID: 11400000, guid: a3594efd50d87764382bfa849f7c5134, type: 2}
   - {fileID: 11400000, guid: 29a9cf4fc674a074f8091b16e96f1898, type: 2}
@@ -4818,6 +4863,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1836990651}
   - {fileID: 847132871}
+  - {fileID: 665207286}
   - {fileID: 619394802}
   - {fileID: 1488906365}
   - {fileID: 610540141}

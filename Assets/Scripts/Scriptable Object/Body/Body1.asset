@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f7f8c061fb1e7498d4072f349662cf, type: 3}
-  m_Name: Body9
+  m_Name: Body1
   m_EditorClassIdentifier: 
-  costumeID: 2009
+  costumeID: 2001
   costumeName: Body9
   costumeType: 1
   costumeSprite: {fileID: -3040727701450866972, guid: c75e467d676387445ab698eb0c5f9781, type: 3}
   isUnlocked: 0
+  price: 80
