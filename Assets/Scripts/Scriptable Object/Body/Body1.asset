@@ -16,5 +16,5 @@ MonoBehaviour:
   costumeName: Body9
   costumeType: 1
   costumeSprite: {fileID: -3040727701450866972, guid: c75e467d676387445ab698eb0c5f9781, type: 3}
-  isUnlocked: 0
-  price: 80
+  isUnlocked: 1
+  price: 2

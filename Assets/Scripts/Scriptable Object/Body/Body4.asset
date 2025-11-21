@@ -17,4 +17,4 @@ MonoBehaviour:
   costumeType: 1
   costumeSprite: {fileID: 7461769583498014268, guid: c75e467d676387445ab698eb0c5f9781, type: 3}
   isUnlocked: 0
-  price: 30
+  price: 3

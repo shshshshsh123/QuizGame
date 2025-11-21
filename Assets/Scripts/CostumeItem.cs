@@ -31,14 +31,14 @@ public class CostumeItem : MonoBehaviour
         if (costumeData.isUnlocked)
         {
             _priceText.text = "º¸À¯Áß";
-            _priceText.color = Color.black;
+            _priceText.color = Color.white;
             _lockIconObject.SetActive(false);
             _costumeIconImage.gameObject.SetActive(true);
         }
         else
         {
             _priceText.text = costumeData.price.ToString("N0") + "G";
-            _priceText.color = Color.yellow;
+            _priceText.color = Color.red;
             _lockIconObject.SetActive(true);
             _costumeIconImage.gameObject.SetActive(false);
         }

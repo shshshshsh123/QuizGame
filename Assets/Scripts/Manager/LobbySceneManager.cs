@@ -28,7 +28,7 @@ public class LobbySceneManager : MonoBehaviour
     [SerializeField, Tooltip("플레이어 이미지(하의)")] Image _playerLegImage;
     [SerializeField, Tooltip("카테고리 선택")] Button[] _categoryButtons; // 0: 머리, 1: 상의, 2: 하의
     [SerializeField, Tooltip("아이템 슬롯")] GameObject[] _itemSlots;
-    Color _selectedColor = new Color(0.8f, 0.8f, 0.8f);
+    Color _selectedColor = new Color(0.56f, 0.56f, 0.56f);
     Color _defaultColor = Color.white;
 
     [Header("# Daily Panel")]
