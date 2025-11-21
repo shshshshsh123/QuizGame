@@ -166,12 +166,13 @@ MonoBehaviour:
   smallpoopPrefabs:
   - {fileID: 1832851815194392198, guid: c0d5f24c510a14f46a0874bb1116bdea, type: 3}
   - {fileID: 8191580401922883469, guid: da4a9941ccd79e441b71bad56d787977, type: 3}
-  spawnInterval: 3
+  spawnInterval: 2
   giantPoopPrefab: {fileID: 6404643249846898972, guid: 24ec033a5e550524a85b0d946f9f9456, type: 3}
-  giantSpawnInterval: 10
-  minNormalSpawnInterval: 0.5
-  minGiantSpawnInterval: 5
+  giantSpawnInterval: 15
+  minNormalSpawnInterval: 1
+  minGiantSpawnInterval: 8
   timeToReachMaxDifficulty: 120
+  giantPoopSafeTime: 2
 --- !u!1 &128357095
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 10}
+  m_AnchoredPosition: {x: -10, y: 200}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &234561420
@@ -1813,6 +1814,51 @@ MonoBehaviour:
   countdownText: {fileID: 1494985493}
   area_o: {fileID: 1252129782}
   area_x: {fileID: 1256685178}
+--- !u!1 &927272508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927272509}
+  - component: {fileID: 927272510}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &927272509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927272508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927272510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927272508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e11fa055cacbd546a1c5b1eacc1dbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: 
 --- !u!1 &1121495546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,7 +2345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 10}
+  m_AnchoredPosition: {x: 10, y: 200}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1362310501
@@ -2587,7 +2633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1465423170
@@ -2603,7 +2649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3335,7 +3381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095181145
@@ -3351,7 +3397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3429,6 +3475,7 @@ MonoBehaviour:
   scoreText: {fileID: 1887959549}
   goldenPoopText: {fileID: 2119438627}
   finalScoreText: {fileID: 1952722903}
+  feedbackText: {fileID: 1860730077}
   playerCostumes:
   - {fileID: 812312635}
   - {fileID: 716019026}
@@ -3683,6 +3730,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 703856951}
   - {fileID: 2099207316}
+  - {fileID: 927272509}
   - {fileID: 55908921}
   - {fileID: 1140677355}
   - {fileID: 318600206}

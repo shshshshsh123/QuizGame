@@ -11,6 +11,38 @@ public class Poop : MonoBehaviour
         Destroy(gameObject, 7f);
     }
 
+    private void Start()
+    {
+        if (gameObject.CompareTag("Giant Poop"))
+        {
+            Resize();
+        }
+    }
+
+    /// <summary>
+    /// 대왕 똥을 화면 가로 크기에 딱 맞게(혹은 꽉 차게) 늘려주는 함수
+    /// </summary>
+    void Resize()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr == null) return;
+
+        // 화면의 세로 높이
+        float worldScreenHeight = Camera.main.orthographicSize * 2f;
+
+        // 화면의 가로 너비
+        float worldScreenWidth = worldScreenHeight * Camera.main.aspect;
+
+        // 대왕 똥 원본 가로 길이
+        float spriteWidth = sr.sprite.bounds.size.x;
+
+        // 화면 가로 길이를 이미지 가로 길이로 나눠서 확대 비율 계산
+        float scaleFactor = worldScreenWidth / spriteWidth;
+
+        // 계산된 비율을 적용
+        transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+    }
+
     /// <summary>
     /// 똥 오브젝트의 움직임을 멈추거나 다시 움직이도록 하는 함수
     /// </summary>
@@ -21,18 +53,17 @@ public class Poop : MonoBehaviour
         if (_rigid == null)
             return;
 
-        // 현재 속도를 저장하고 Kinematic으로 변경해서 움직임을 멈춤
+        // 현재 속도를 저장, 움직임을 멈춤
         if (isPaused)
         {
             _normalVelocity = _rigid.linearVelocity;
-            _rigid.bodyType = RigidbodyType2D.Kinematic;
-            _rigid.linearVelocity = Vector2.zero;
+            _rigid.simulated = false;
         }
 
-        // Dynamic으로 변경하고 원래 속도 적용
+        // 원래 속도 적용, 다시 움직임
         else
         {
-            _rigid.bodyType = RigidbodyType2D.Dynamic;
+            _rigid.simulated = true;
             _rigid.linearVelocity = _normalVelocity;
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI goldenPoopText;
     public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI feedbackText;
 
     [Header("# Player Costume")]
     public List<SpriteRenderer> playerCostumes;
@@ -126,22 +128,46 @@ public class GameManager : MonoBehaviour
     /// <param name="isCorrect"></param>
     public void HideQuiz(bool isCorrect)
     {
+        StartCoroutine(ShowResult(isCorrect));
+    }
+
+    /// <summary>
+    /// 퀴즈의 결과를 보여주는 함수
+    /// </summary>
+    /// <param name="isCorrect"></param>
+    /// <returns></returns>
+    IEnumerator ShowResult(bool isCorrect)
+    {
+        if (feedbackText != null)
+        {
+            // 정답 문구 출력
+            if (isCorrect)
+            {
+                feedbackText.text = "정답이에요. \n잘했어요!";
+            }
+
+            // 오답 문구 출력
+            else
+            {
+                feedbackText.text = "오답이에요. \n아까워요!";
+            }
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        // 3. 퀴즈 패널 끄기
         if (quizPanel != null)
         {
             quizPanel.SetActive(false);
         }
 
-        // 똥의 움직임과 똥 생성 다시 시작
         PauseGame(false);
 
-        // 퀴즈 결과가 정답이면 점수 +5, 황금 똥 +1
         if (isCorrect)
         {
             AddScore(5);
             AddGoldenPoop(1);
         }
-
-        // 퀴즈 결과가 오답이면 게임 종료
         else
         {
             GameOver();
@@ -205,6 +231,12 @@ public class GameManager : MonoBehaviour
         {
             // Poop.cs의 SetPaused 함수를 호출하여 멈추거나 재개
             poop.SetPaused(isPaused);
+        }
+
+        // _poopSpawner가 null이면 다시 찾아서 연결
+        if (_poopSpawner == null)
+        {
+            _poopSpawner = Object.FindFirstObjectByType<PoopSpawner>();
         }
 
         // 똥 생성기 멈춤/재개
